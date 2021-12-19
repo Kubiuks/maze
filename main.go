@@ -1,22 +1,25 @@
 package main
 
 import (
+	"maze/world"
+
+	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
-	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/widget"
 )
 
+type Rect struct {
+	Test *fyne.Container
+}
+
 func main() {
-	a := app.New()
-	w := a.NewWindow("Hello")
+	myApp := app.New()
+	myWindow := myApp.NewWindow("Maze")
 
-	hello := widget.NewLabel("Hello Fyne!")
-	w.SetContent(container.NewVBox(
-		hello,
-		widget.NewButton("Hi!", func() {
-			hello.SetText("Welcome :)")
-		}),
-	))
+	grid := world.NewGrid(30, 30)
+	myWindow.SetContent(grid.DrawGrid())
 
-	w.ShowAndRun()
+	myWindow.Resize(fyne.NewSize(600, 600))
+	myWindow.SetFixedSize(true)
+	myWindow.SetPadded(false)
+	myWindow.ShowAndRun()
 }

@@ -1,0 +1,15 @@
+package agents
+
+type Agent struct {
+	x, y int
+}
+
+func NewAgent(x, y int) *Agent {
+	return &Agent{
+		x: x,
+		y: y,
+	}
+}
+
+func (a *Agent) X() int { return a.x }
+func (a *Agent) Y() int { return a.y }
